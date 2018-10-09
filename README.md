@@ -87,9 +87,11 @@ apply plugin: 'com.hujiang.android-aspectjx'
 ```
 aspectjx {
 //排除所有package路径中包含`android.support`的class文件及库（jar文件）
-	exclude 'android.support'
+	exclude 'android.support','android/support'
 }
 ```
+其中MAC以‘.’分割，Windows以‘/’分割，推荐都配上
+
 **不支持**
 
 ```
