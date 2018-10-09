@@ -164,30 +164,6 @@ aspectjx {
 
 * [AspectJ NoteBook](https://eclipse.org/aspectj/doc/released/adk15notebook/index.html)
 
-### 联系方式
-
-
-email:xiaoming1109@gmail.com
-
-QQ:541136835
-
-WeChat:firefly_1126
-
-### 作者激励
-
-### ● BTC
-
-![](btc_wallet.png)
-
-18yjhBTjipmDgFezzV9n5B7KynLqZN4osL
-
-
-### ● ETH (ERC20 coin support)
-
-![](eth_wallet.png)
-
-0xe36e1877F4e386C314894923c339c28ED4a88536
-
 ### License
 
 
