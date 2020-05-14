@@ -43,23 +43,32 @@ class AJXProcedure extends AbsProcedure {
         def configuration = new AJXConfig(project)
 
         project.afterEvaluate {
-            configuration.variants.all { variant ->
-                JavaCompile javaCompile = variant.hasProperty('javaCompiler') ? variant.javaCompileProvider.get() : variant.javaCompile
+            def variants = configuration.variants
+            if (variants && !variants.isEmpty()) {
+                def variant = variants[0]
+                JavaCompile javaCompile
+                if (variant.hasProperty('javaCompileProvider')) {
+                    //android gradle 3.3.0 +
+                    javaCompile = variant.javaCompileProvider.get()
+                } else {
+                    javaCompile = variant.javaCompile
+                }
+
                 ajxCache.encoding = javaCompile.options.encoding
-                ajxCache.bootClassPath = configuration.bootClasspath.join(File.pathSeparator)
                 ajxCache.sourceCompatibility = javaCompile.sourceCompatibility
                 ajxCache.targetCompatibility = javaCompile.targetCompatibility
             }
+            ajxCache.bootClassPath = configuration.bootClasspath.join(File.pathSeparator)
 
             AJXExtension ajxExtension = project.aspectjx
+            project.logger.info "project.aspectjx=${ajxExtension}"
+
             //当过滤条件发生变化，clean掉编译缓存
             if (ajxCache.isExtensionChanged(ajxExtension)) {
                 project.tasks.findByName('preBuild').dependsOn(project.tasks.findByName("clean"))
             }
 
             ajxCache.putExtensionConfig(ajxExtension)
-
-            ajxCache.ajcArgs = ajxExtension.ajcArgs
         }
 
         //set aspectj build log output dir
