@@ -11,18 +11,10 @@ AspectJX
  
 ## 最近更新
 
-#### v2.0.4
+#### v2.0.10 (2020-03-31)
+* Supports android gradle plugin 3.6.1
+* Upgrade inner aspectjrt version to 1.9.5
 
-#### v2.0.2
-* 解决无法识别kotlin写的Aspect文件的Bug
-
-#### v2.0.0
-* 支持Instant Run编译
-* 废弃 `includeJarFilter`和`excludeJarFilter`两个配置命令
-* 新增 `include`和 `exclude`配置命令，通过包名(package)路径关键字匹配，可过滤class文件和库文件(jar)
-* `include`和 `exclude`配置命令支持`*`，`**`通配符
-* 修复已知的gradle兼容性Bug
-* 提升编译效率
 
 [查看更多版本信息](CHANGELOG.md)
 
@@ -50,7 +42,7 @@ AspectJX
 
 ```
  dependencies {
-        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.4'
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.8'
         }
 ```
 
@@ -89,11 +81,9 @@ apply plugin: 'com.hujiang.android-aspectjx'
 ```
 aspectjx {
 //排除所有package路径中包含`android.support`的class文件及库（jar文件）
-	exclude 'android.support','android/support'
+	exclude 'android.support'
 }
 ```
-其中MAC以‘.’分割，Windows以‘/’分割，推荐都配上
-
 **不支持**
 
 ```
@@ -167,6 +157,7 @@ aspectjx {
 * [AspectJ Development Environment Guide](https://eclipse.org/aspectj/doc/released/devguide/index.html)
 
 * [AspectJ NoteBook](https://eclipse.org/aspectj/doc/released/adk15notebook/index.html)
+
 
 ### License
 
